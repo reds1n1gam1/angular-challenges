@@ -16,16 +16,20 @@ import { CardType } from '../../model/card.model';
   standalone: true,
 })
 export class ListItemComponent {
-  @Input() id!: number;
-  @Input() name!: string;
-  @Input() type!: CardType;
+  @Input() id?: number;
+  @Input() name?: string;
+  @Input() type?: CardType;
 
   constructor(
     private teacherStore: TeacherStore,
     private studentStore: StudentStore,
   ) {}
 
-  delete(id: number) {
+  delete(id?: number): void {
+    if (!id) {
+      return;
+    }
+
     if (this.type === CardType.TEACHER) {
       this.teacherStore.deleteOne(id);
     } else if (this.type === CardType.STUDENT) {
