@@ -32,4 +32,10 @@ export class TodoApiServiceService {
       },
     );
   }
+
+  public deleteTodo(todo: Todo): Observable<ArrayBuffer> {
+    return this.httpClient.delete<ArrayBuffer>(
+      `https://jsonplaceholder.typicode.com/todos/${todo.id}`,
+    );
+  }
 }
